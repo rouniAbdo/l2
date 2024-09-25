@@ -1,0 +1,19 @@
+{
+  "name": "vat-calculator",
+  "version": "1.0.0",
+  "type":"module",
+  "description": "A library for calculating VAT.",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/main.js",
+    "lint": "npx eslint ./src || exit 0",
+    "lint:fix": "npx eslint ./src --fix || exit 0"
+  },
+  "author": "Rouni Abdo",
+  "license": "MIT",
+  "devDependencies": {
+    "@lnu/eslint-config": "^1.1.10",
+    "eslint": "^8.47.0"
+  }
+}
