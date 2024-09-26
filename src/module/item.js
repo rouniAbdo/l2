@@ -19,6 +19,9 @@ export class Item {
    * @returns {string} - name of the item.
    */
   getName () {
+    if (this.name === '' || this.name === undefined) {
+      throw new Error('Item name is empty.')
+    }
     return this.name
   }
 
@@ -28,6 +31,11 @@ export class Item {
    * @returns {number} - price of the item.
    */
   getPrice () {
+    if (this.price === '' || this.price !== 'number') {
+      throw new Error('Item price is empty.')
+    } else if (this.price <= 0) {
+      throw new Error('Item price should be greater than 0.')
+    }
     return this.price
   }
 }
