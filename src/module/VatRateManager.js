@@ -8,6 +8,9 @@ export class VatRateManager {
    * @param {object}vateRates - VAT rates.
    */
   constructor (vateRates) {
+    if (typeof vateRates !== 'object' || vateRates === null) {
+      throw new Error('VAT rates are not an object.')
+    }
     this.vateRates = vateRates
   }
 
