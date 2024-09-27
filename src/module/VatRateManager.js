@@ -21,10 +21,9 @@ export class VatRateManager {
    * @returns {number} - VAT rate.
    */
   getRate (rateName) {
-    const rate = this.vateRates[rateName]
     if (!Object.keys(this.vateRates).includes(rateName)) {
-      throw new Error('Wrong VAT rate name.')
+      throw new Error('Invalind VAT rate name.')
     }
-    return rate
+    return this.vateRates[rateName]
   }
 }
