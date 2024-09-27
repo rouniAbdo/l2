@@ -17,13 +17,14 @@ export class VatRateManager {
   /**
    * Get VAT rate by name.
    *
-   * @param {string} rateName - VAT rate name.
+   * @param {object} rateName - VAT rate name.
    * @returns {number} - VAT rate.
    */
   getRate (rateName) {
+    const rate = this.vateRates[rateName]
     if (!Object.keys(this.vateRates).includes(rateName)) {
       throw new Error('Wrong VAT rate name.')
     }
-    return this.vateRates(rateName)
+    return rate
   }
 }
