@@ -69,4 +69,40 @@ export class Item {
     this.quantity = Number(this.quantity)
     return this.quantity
   }
+
+  /**
+   * Set a new price of the item.
+   *
+   * @param { number } newPrice - new price of the item.
+   */
+  setPrice (newPrice) {
+    if (typeof newPrice !== 'number') {
+      throw new Error('Price should be a number')
+    }
+    this.price = newPrice
+  }
+
+  /**
+   * Set a new vat of the item.
+   *
+   * @param {number} newVat - new vat of the item.
+   */
+  setVat (newVat) {
+    if (typeof newVat !== 'number') {
+      throw new Error('Vat should be a number')
+    }
+    this.vat = newVat
+  }
+
+  /**
+   * Set a new quantity of the item.
+   *
+   * @param {number} newQuantity - new quantity of the item.
+   */
+  setQuantity (newQuantity) {
+    if (typeof newQuantity !== 'number') {
+      throw new Error('Quantity should be a number')
+    }
+    this.quantity = newQuantity
+  }
 }
