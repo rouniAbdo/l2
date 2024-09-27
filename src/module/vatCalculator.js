@@ -1,44 +1,65 @@
 import { Item } from './item.js'
 import { VatRateManager } from './VatRateManager.js'
 /**
- *
+ * Manages VAT calculation and total price of items.
  */
 export class VatCalculator {
   /**
-   * Constructor of the VatCalculator class.
+   * Creates an instance of VatCalculator.
    *
-   * @param {object}vatRates - VAT rate.
+   * @param {object} vatRates - Object containing VAT rates.
    */
   constructor (vatRates) {
-    this.item = []
+    this.items = []
     this.vatRateManager = new VatRateManager(vatRates)
   }
 
   /**
-   * Method to add item to the list.
+   * Add an item to the calculator.
    *
-   * @param {string} name - name of the item.
-   * @param {number} price - price of the item.
+   * @param {string} name - Name of the item.
+   * @param {number} price - Price of the item.
+   * @param {string} vatRateName - VAT rate name.
+   * @param {number} quantity - Quantity of the item.
    */
-  addItem (name, price) {
-    const items = new Item(name, price)
-    this.item.push(items)
+  addItem (name, price, vatRateName, quantity = 1) {
+    const vatRate = this.vatRateManager.getRate(vatRateName)
+    const item = new Item(name, price, vatRate, quantity)
+    this.items.push(item)
   }
 
   /**
    * Method to calculate VAT for each item.
    *
-   * @param {object} rateName - VAT rate name.
-   * @returns {object} - item object with VAT.
+   * @param {Item} item - item object.
+   * @returns {number} - VAT for the item.
    */
-  CalculateVAT (rateName) {
-    const rate = this.vatRateManager.getRate(rateName)
-    return this.item.map(item => ({
+  CalculateVATForItem (item) {
+    return item.getPrice() * item.getVat() * item.getQuantity() / 100
+  }
+
+  /**
+   * Calculate total price including VAT for a single item.
+   *
+   * @returns {object} - Array of objects containing name, price, VAT rate, quantity, VAT, and total.
+   */
+  CalculateTotalPrice () {
+    return this.items.map(item => ({
       name: item.getName(),
       price: item.getPrice(),
-      vat: item.getPrice() * rate / 100,
-      priceWithVat: item.getPrice() + item.getPrice() * rate / 100
-    })
-    )
+      VatRate: item.getVat(),
+      quantity: item.getQuantity(),
+      VAT: this.CalculateVATForItem(item),
+      total: item.getPrice() * item.getQuantity() + this.CalculateVATForItem(item)
+    }))
+  }
+
+  /**
+   * Get total price including VAT for all items.
+   *
+   * @returns {number} - Total price including VAT.
+   */
+  getTotalWithVAT () {
+    return this.CalculateTotalPrice().reduce((total, item) => total + item.total, 0)
   }
 }
