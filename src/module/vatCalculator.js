@@ -1,5 +1,5 @@
-import Item from './item'
-import VatRateManager from './VatRateManager'
+import { Item } from './item.js'
+import { VatRateManager } from './VatRateManager.js'
 /**
  *
  */
@@ -7,13 +7,11 @@ export class VatCalculator {
   /**
    * Constructor of the VatCalculator class.
    *
-   * @param {string} name - name of the item.
-   * @param {number} price - price of the item.
-   * @param {object}vatRate - VAT rate.
+   * @param {object}vatRates - VAT rate.
    */
-  constructor (name, price, vatRate) {
+  constructor (vatRates) {
     this.item = []
-    this.vatRateManager = new VatRateManager(vatRate)
+    this.vatRateManager = new VatRateManager(vatRates)
   }
 
   /**
@@ -21,10 +19,26 @@ export class VatCalculator {
    *
    * @param {string} name - name of the item.
    * @param {number} price - price of the item.
-   * @param {string} vatRate - VAT rate of the item.
-   * @returns {object} - item object without VAT.
    */
-  addItem (name, price, vatRate) {
-    return this.item.push(new Item(name, price, vatRate))
+  addItem (name, price) {
+    const items = new Item(name, price)
+    this.item.push(items)
+  }
+
+  /**
+   * Method to calculate VAT for each item.
+   *
+   * @param {object} rateName - VAT rate name.
+   * @returns {object} - item object with VAT.
+   */
+  CalculateVAT (rateName) {
+    const rate = this.vatRateManager.getRate(rateName)
+    return this.item.map(item => ({
+      name: item.getName(),
+      price: item.getPrice(),
+      vat: item.getPrice() * rate / 100,
+      priceWithVat: item.getPrice() + item.getPrice() * rate / 100
+    })
+    )
   }
 }
