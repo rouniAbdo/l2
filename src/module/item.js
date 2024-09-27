@@ -7,10 +7,14 @@ export class Item {
    *
    * @param {string} name - name of the item.
    * @param {number} price - price of the item.
+   * @param {number} vat - VAT for the item.
+   * @param {number} quantity - quantity of the item.
    */
-  constructor (name, price) {
+  constructor (name, price, vat, quantity = 1) {
     this.name = name
     this.price = price
+    this.vat = vat
+    this.quantity = quantity
   }
 
   /**
@@ -38,5 +42,18 @@ export class Item {
     }
     this.price = Number(this.price)
     return this.price
+  }
+
+  /**
+   * Get Vat of the item.
+   *
+   * @returns {number} - VAT of the item
+   */
+  getVat () {
+    if (this.vat === '' || isNaN(Number(this.vat))) {
+      throw new Error('Item VAT is not a valid number.')
+    }
+    this.vat = Number(this.vat)
+    return this.vat
   }
 }
