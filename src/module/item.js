@@ -31,11 +31,12 @@ export class Item {
    * @returns {number} - price of the item.
    */
   getPrice () {
-    if (this.price === '' || this.price !== 'number') {
-      throw new Error('Item price is empty.')
-    } else if (this.price <= 0) {
-      throw new Error('Item price should be greater than 0.')
+    if (this.price === '' || isNaN(Number(this.price))) {
+      throw new Error('Item price is not a valid number.')
+    } else if (this.price < 0) {
+      throw new Error('Item price is negative.')
     }
+    this.price = Number(this.price)
     return this.price
   }
 }
