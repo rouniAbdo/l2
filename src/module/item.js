@@ -56,4 +56,17 @@ export class Item {
     this.vat = Number(this.vat)
     return this.vat
   }
+
+  /**
+   * Get quantity of the item.
+   *
+   * @returns {number} - quantity of the item
+   */
+  getQuantity () {
+    if (this.quantity === '' || isNaN(Number(this.quantity))) {
+      throw new Error('Item quantity is not a valid number.')
+    }
+    this.quantity = Number(this.quantity)
+    return this.quantity
+  }
 }
