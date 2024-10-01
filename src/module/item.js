@@ -36,7 +36,7 @@ export class Item {
    * @returns {number} - price of the item.
    */
   getPrice () {
-    if (typeof this.price !== 'number' || isNaN(this.price || this.price < 0)) {
+    if (typeof this.price !== 'number' || isNaN(this.price || this.price <= 0)) {
       throw new Error('Item price is not a valid number.')
     }
     return this.price
@@ -60,7 +60,7 @@ export class Item {
    * @returns {number} - quantity of the item
    */
   getQuantity () {
-    if (typeof this.quantity !== 'number' || isNaN(this.quantity) || this.quantity < 0) {
+    if (typeof this.quantity !== 'number' || isNaN(this.quantity) || this.quantity <= 0) {
       throw new Error('Item quantity is not a valid number.')
     }
     return this.quantity
@@ -72,7 +72,7 @@ export class Item {
    * @param { number } newPrice - new price of the item.
    */
   setPrice (newPrice) {
-    if (typeof newPrice !== 'number' || isNaN(newPrice) || newPrice < 0) {
+    if (typeof newPrice !== 'number' || isNaN(newPrice) || newPrice <= 0) {
       throw new Error('Item price is not a valid number.')
     }
     this.price = newPrice
@@ -84,7 +84,7 @@ export class Item {
    * @param {number} newQuantity - new quantity of the item.
    */
   setQuantity (newQuantity) {
-    if (typeof newQuantity !== 'number' || isNaN(newQuantity) || newQuantity < 0) {
+    if (typeof newQuantity !== 'number' || isNaN(newQuantity) || newQuantity <= 0) {
       throw new Error('Item quantity is not a valid number.')
     }
     this.quantity = newQuantity
