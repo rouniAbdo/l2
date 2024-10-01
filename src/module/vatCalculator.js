@@ -1,5 +1,4 @@
 import { Item } from './item.js'
-import { VatRateManager } from './VatRateManager.js'
 /**
  * Manages VAT calculation and total price of items.
  */
@@ -11,7 +10,20 @@ export class VatCalculator {
    */
   constructor (vatRates) {
     this.items = []
-    this.vatRateManager = new VatRateManager(vatRates)
+    this.vatRates = vatRates
+  }
+
+  /**
+   * Get the VAT rate.
+   *
+   * @param {number} rate - VAT rate.
+   * @returns {number} - VAT rate.
+   */
+  getRate (rate) {
+    if (typeof rate !== 'number' || rate <= 0) {
+      throw new Error('VAT rate must be a number and greater than or equal to 1')
+    }
+    return rate
   }
 
   /**
@@ -19,11 +31,10 @@ export class VatCalculator {
    *
    * @param {string} name - Name of the item.
    * @param {number} price - Price of the item.
-   * @param {string} vatRateName - VAT rate name.
+   * @param {number} vatRate - VAT rate.
    * @param {number} quantity - Quantity of the item.
    */
-  addItem (name, price, vatRateName, quantity = 1) {
-    const vatRate = this.vatRateManager.getRate(vatRateName)
+  addItem (name, price, vatRate, quantity = 1) {
     const item = new Item(name, price, vatRate, quantity)
     this.items.push(item)
   }
