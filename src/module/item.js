@@ -12,10 +12,10 @@ export class Item {
    * @param {object} vatRates - VAT rates.
    */
   constructor (name, price, vatRateKey, quantity = 1, vatRates) {
-    this.name = name
-    this.price = price
-    this.vatRate = vatRates[vatRateKey]
-    this.quantity = quantity
+    this.setName(name)
+    this.setPrice(price)
+    this.setVatRate(vatRates, vatRateKey)
+    this.setQuantity(quantity)
   }
 
   /**
@@ -24,7 +24,7 @@ export class Item {
    * @returns {string} - name of the item.
    */
   getName () {
-    if (!this.name) {
+    if (typeof this.name !== 'string' || this.name.trim() === '') {
       throw new Error('Item name is empty.')
     }
     return this.name
@@ -36,7 +36,7 @@ export class Item {
    * @returns {number} - price of the item.
    */
   getPrice () {
-    if (isNaN(this.price) || this.price < 0) {
+    if (typeof this.price !== 'number' || isNaN(this.price || this.price < 0)) {
       throw new Error('Item price is not a valid number.')
     }
     return this.price
@@ -48,7 +48,7 @@ export class Item {
    * @returns {number} - VAT of the item
    */
   getVatRate () {
-    if (isNaN(this.vatRate)) {
+    if (typeof this.vatRate !== 'number' || isNaN(this.vatRate)) {
       throw new Error('Item VAT is not a valid number.')
     }
     return this.vatRate
@@ -60,7 +60,7 @@ export class Item {
    * @returns {number} - quantity of the item
    */
   getQuantity () {
-    if (isNaN(this.quantity)) {
+    if (typeof this.quantity !== 'number' || isNaN(this.quantity) || this.quantity < 0) {
       throw new Error('Item quantity is not a valid number.')
     }
     return this.quantity
@@ -72,8 +72,8 @@ export class Item {
    * @param { number } newPrice - new price of the item.
    */
   setPrice (newPrice) {
-    if (typeof newPrice !== 'number') {
-      throw new Error('Price should be a number')
+    if (typeof newPrice !== 'number' || isNaN(newPrice) || newPrice < 0) {
+      throw new Error('Item price is not a valid number.')
     }
     this.price = newPrice
   }
@@ -84,8 +84,8 @@ export class Item {
    * @param {number} newQuantity - new quantity of the item.
    */
   setQuantity (newQuantity) {
-    if (typeof newQuantity !== 'number') {
-      throw new Error('Quantity should be a number')
+    if (typeof newQuantity !== 'number' || isNaN(newQuantity) || newQuantity < 0) {
+      throw new Error('Item quantity is not a valid number.')
     }
     this.quantity = newQuantity
   }
@@ -97,7 +97,7 @@ export class Item {
    */
   setName (newName) {
     if (typeof newName !== 'string' || newName.trim() === '') {
-      throw new Error('Name should be a string')
+      throw new Error('Item name is empty.')
     }
     this.name = newName
   }
@@ -110,7 +110,7 @@ export class Item {
    */
   setVatRate (vatRates, vatRateKey) {
     if (!vatRates[vatRateKey]) {
-      throw new Error('Invalid VAT rate key')
+      throw new Error('Invalid VAT rate key.')
     }
     this.vatRate = vatRates[vatRateKey]
   }
