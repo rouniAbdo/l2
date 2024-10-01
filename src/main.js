@@ -1,2 +1,2 @@
-import { UserInterface as VATHandler } from './module/userInterface.js'
-export default VATHandler
+import { VATManager } from './module/vatManager.js'
+export default VATManager

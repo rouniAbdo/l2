@@ -1,12 +1,12 @@
 # Test Report for the Project
 
 ## Overview
-This report summarizes the results of unit tests for the classes `Item`, `UpdateItem`, `VatCalculator`, and `UserInterface` in the project.
+This report summarizes the results of unit tests for the classes `Item`, `UpdateItem`, `VatCalculator`, and `VATManager` in the project.
 
 ## Test Environment
 - **Testing Tool**: Jest
 - **Programming Language**: JavaScript
-- **Classes**: Item, UpdateItem, VatCalculator, UserInterface
+- **Classes**: Item, UpdateItem, VatCalculator, VATManager
 
 ## Test Cases and Results
 
@@ -38,7 +38,7 @@ This report summarizes the results of unit tests for the classes `Item`, `Update
 | **3.2. Calculate VAT for an item**                            | Correctly calculates the VAT for the item as 25.                  | Pass     |
 | **3.3. Calculate total price including VAT for all items**    | Correctly calculates total price including VAT as 237.            | Pass     |
 
-### 4. UserInterface
+### 4. VATManager
 
 | Test Case                                         | Expected Result                                                   | Status   |
 |--------------------------------------------------|------------------------------------------------------------------|----------|
@@ -48,7 +48,7 @@ This report summarizes the results of unit tests for the classes `Item`, `Update
 |**4.4. Update item details**                              | Updates item properties and returns success message for updated item. | Pass     |
 
 ## Summary
-All tests for the classes `Item`, `UpdateItem`, `VatCalculator`, and `UserInterface` were successfully executed and returning expected results.
+All tests for the classes `Item`, `UpdateItem`, `VatCalculator`, and `VATManager` were successfully executed and returning expected results.
 
 ## Test Report Date
 - **Date**: 2024-10-01

@@ -1,11 +1,11 @@
 import { VatCalculator } from './vatCalculator.js'
 import { UpdateItem } from './updateItem.js'
 /**
- * UserInterface class.
+ * VATManager class.
  */
-export class UserInterface {
+export class VATManager {
   /**
-   * Constructor of the UserInterface class.
+   * Constructor of the VATManager class.
    *
    * @param {object} VatRates - VAT rates.
    */
