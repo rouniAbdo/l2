@@ -1,5 +1,4 @@
-import { VatCalculator, UserInterface } from '../src/module/userInterface'
-import { UpdateItem } from '../src/module/updateItem'
+import { UserInterface } from '../src/module/userInterface'
 describe('UserInterface', () => {
   const vatRates = { standard: 0.25, reduced: 0.12 }
   let userInterface
@@ -13,5 +12,10 @@ describe('UserInterface', () => {
   test('should return an error message', () => {
     const result = userInterface.addItemToCalculator('item1', '', 'standard', 1)
     expect(result).toBe('Item price is not a valid number.')
+  })
+  test('should get total price including VAT', () => {
+    userInterface.addItemToCalculator('item1', 100, 'standard', 1)
+    userInterface.addItemToCalculator('item2', 100, 'reduced', 1)
+    expect(userInterface.getTotalPrice()).toBe(237)
   })
 })
