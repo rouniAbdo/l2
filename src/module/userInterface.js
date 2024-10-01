@@ -87,7 +87,12 @@ export class UserInterface {
         throw new Error('Item not found')
       }
       this.updateItem.update(itemToUpdate, updates, this.vatCalculator.vatRates)
-      return this.successNotification(itemToUpdate.getName(), itemToUpdate.getPrice(), itemToUpdate.getVatRate(), itemToUpdate.getQuantity())
+      return this.successNotification(
+        itemToUpdate.getName(),
+        itemToUpdate.getPrice(),
+        itemToUpdate.getVatRate(),
+        itemToUpdate.getQuantity()
+      )
     } catch (error) {
       return error.message
     }
