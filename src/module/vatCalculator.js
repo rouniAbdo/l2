@@ -14,28 +14,15 @@ export class VatCalculator {
   }
 
   /**
-   * Get the VAT rate.
-   *
-   * @param {number} rate - VAT rate.
-   * @returns {number} - VAT rate.
-   */
-  getRate (rate) {
-    if (typeof rate !== 'number' || rate <= 0) {
-      throw new Error('VAT rate must be a number and greater than or equal to 1')
-    }
-    return rate
-  }
-
-  /**
    * Add an item to the calculator.
    *
    * @param {string} name - Name of the item.
    * @param {number} price - Price of the item.
-   * @param {number} vatRate - VAT rate.
+   * @param {number} vatRateKey - Key of the VAT rate.
    * @param {number} quantity - Quantity of the item.
    */
-  addItem (name, price, vatRate, quantity = 1) {
-    const item = new Item(name, price, vatRate, quantity)
+  addItem (name, price, vatRateKey, quantity = 1) {
+    const item = new Item(name, price, vatRateKey, quantity, this.vatRates)
     this.items.push(item)
   }
 
@@ -46,7 +33,7 @@ export class VatCalculator {
    * @returns {number} - VAT for the item.
    */
   CalculateVATForItem (item) {
-    return item.getPrice() * item.getVat() * item.getQuantity() / 100
+    return item.getPrice() * item.getVatRate() * item.getQuantity()
   }
 
   /**
@@ -58,7 +45,7 @@ export class VatCalculator {
     return this.items.map(item => ({
       name: item.getName(),
       price: item.getPrice(),
-      VatRate: item.getVat(),
+      VatRate: item.getVatRate(),
       quantity: item.getQuantity(),
       VAT: this.CalculateVATForItem(item),
       total: item.getPrice() * item.getQuantity() + this.CalculateVATForItem(item)
