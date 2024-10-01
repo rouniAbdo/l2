@@ -4,54 +4,30 @@ import { Item } from './item.js'
  */
 export class UpdateItem {
   /**
-   * Update vat of the item.
+   * Update an item with new values.
    *
-   * @param {Item} item - Item object.
-   * @param {number} newVat - New number of the item.
+   * @param {Item} item - item object.
+   * @param {object} updates - Object containing new values.
+   * @param {object} vatRates - Object containing VAT rates.
    */
-  updateVat (item, newVat) {
-    if (typeof newVat !== 'number' || newVat <= 0) {
-      throw new Error('VAT rate must be a number and greater than 0')
+  update (item, updates, vatRates) {
+    for (const [key, value] of Object.entries(updates)) {
+      switch (key) {
+        case 'price':
+          item.price = value
+          break
+        case 'vat':
+          item.vatRate = vatRates[value]
+          break
+        case 'quantity':
+          item.quantity = value
+          break
+        case 'name':
+          item.name = value
+          break
+        default:
+          throw new Error(`Invalid key: ${key}`)
+      }
     }
-    item.setVat(newVat)
-  }
-
-  /**
-   * Update price of the item.
-   *
-   * @param {object} item - Item object.
-   * @param {number} newPrice - New price of the item.
-   */
-  updatePrice (item, newPrice) {
-    if (typeof newPrice !== 'number') {
-      throw new Error('Price should be a number')
-    }
-    item.setPrice(newPrice)
-  }
-
-  /**
-   * Update quantity of the item.
-   *
-   * @param {object} item - Item object.
-   * @param {number} newQuantity - New quantity of the item.
-   */
-  updateQuantity (item, newQuantity) {
-    if (typeof newQuantity !== 'number' || newQuantity <= 0) {
-      throw new Error('Quantity should be a positive number greater than 0')
-    }
-    item.setQuantity(newQuantity)
-  }
-
-  /**
-   * Update name of the item.
-   *
-   * @param {object} item - Item object.
-   * @param {string} newName - New name of
-   */
-  updateName (item, newName) {
-    if (typeof newName !== 'string' || newName.trim() === '') {
-      throw new Error('Name should be a string')
-    }
-    item.setName(newName)
   }
 }
