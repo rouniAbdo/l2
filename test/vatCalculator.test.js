@@ -18,4 +18,9 @@ describe('VatCalculator', () => {
     const item = new Item('item1', 100, 'standard', 1, vatRates)
     expect(vatCalculator.CalculateVATForItem(item)).toBe(25)
   })
+  test('should calculate total price including VAT for all items', () => {
+    vatCalculator.addItem('item1', 100, 'standard', 1, vatRates)
+    vatCalculator.addItem('item2', 100, 'reduced', 1, vatRates)
+    expect(vatCalculator.getTotalWithVAT()).toBe(237)
+  })
 })
