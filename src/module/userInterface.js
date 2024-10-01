@@ -1,4 +1,4 @@
-import { VatCalculator } from './vatCalculator'
+import { VatCalculator } from './vatCalculator.js'
 /**
  * UserInterface class.
  */
@@ -51,5 +51,23 @@ export class UserInterface {
    */
   errorMessage (error) {
     return error.message
+  }
+
+  /**
+   * Calculate VAT for all items.
+   *
+   * @returns {Array} - Array of VAT calculations for all items.
+   */
+  calculateVATForAllItems () {
+    return this.vatCalculator.CalculateTotalPrice()
+  }
+
+  /**
+   * Get total price including VAT for all items.
+   *
+   * @returns {number} - Total price including VAT.
+   */
+  getTotalPrice () {
+    return this.vatCalculator.getTotalWithVAT()
   }
 }
