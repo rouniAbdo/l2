@@ -1,4 +1,5 @@
 import { VatCalculator } from './vatCalculator.js'
+import { UpdateItem } from './updateItem.js'
 /**
  * UserInterface class.
  */
@@ -10,6 +11,7 @@ export class UserInterface {
    */
   constructor (VatRates) {
     this.vatCalculator = new VatCalculator(VatRates)
+    this.updateItem = new UpdateItem()
   }
 
   /**
@@ -69,5 +71,25 @@ export class UserInterface {
    */
   getTotalPrice () {
     return this.vatCalculator.getTotalWithVAT()
+  }
+
+  /**
+   * Update item details.
+   *
+   * @param {string} itemName - Name of the item.
+   * @param {object} updates - Object containing new values.
+   * @returns {string} - Success message or error message.
+   */
+  updateItemDetails (itemName, updates) {
+    try {
+      const itemToUpdate = this.vatCalculator.items.find(item => item.getName() === itemName)
+      if (!itemToUpdate) {
+        throw new Error('Item not found')
+      }
+      this.updateItem.update(itemToUpdate, updates, this.vatCalculator.vatRates)
+      return this.successNotification(itemToUpdate.getName(), itemToUpdate.getPrice(), itemToUpdate.getVatRate(), itemToUpdate.getQuantity())
+    } catch (error) {
+      return error.message
+    }
   }
 }
