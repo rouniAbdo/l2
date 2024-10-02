@@ -1,5 +1,5 @@
-import { VatManagement } from '../src/module/VatManagement'
-describe('VATManager', () => {
+import { VatManagement } from '../src/module/vatManagement.js'
+describe('VatManagement', () => {
   const vatRates = { standard: 0.25, reduced: 0.12 }
   let vatManager
   beforeEach(() => {

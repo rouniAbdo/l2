@@ -1,5 +1,5 @@
 import { UpdateItem } from '../src/module/updateItem'
-import { Item } from '../src/module/item.js'
+import { Item } from '../src/module/item'
 describe('UpdateItem', () => {
   const vatRates = { standard: 0.25, reduced: 0.12 }
 

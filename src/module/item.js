@@ -109,7 +109,7 @@ export class Item {
    * @param {string} vatRateKey - Key of the VAT rate.
    */
   setVatRate (vatRates, vatRateKey) {
-    if (!vatRates[vatRateKey]) {
+    if (!(vatRateKey in vatRates)) {
       throw new Error('Invalid VAT rate key.')
     }
     this.vatRate = vatRates[vatRateKey]
