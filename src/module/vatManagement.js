@@ -1,11 +1,11 @@
 import { VatCalculator } from './vatCalculator.js'
 import { UpdateItem } from './updateItem.js'
 /**
- * VATManager class.
+ * VatManagement class.
  */
-export class VATManager {
+export class VatManagement {
   /**
-   * Constructor of the VATManager class.
+   * Constructor of the VatManagement class.
    *
    * @param {object} VatRates - VAT rates.
    */
@@ -60,7 +60,7 @@ export class VATManager {
    *
    * @returns {Array} - Array of VAT calculations for all items.
    */
-  calculateVATForAllItems () {
+  calculateTotalVAT () {
     return this.vatCalculator.CalculateTotalPrice()
   }
 

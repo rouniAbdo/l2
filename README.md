@@ -22,7 +22,7 @@ To use the VAT Calculation Library in your project, follow these steps:
  ```
 3. **Import the Library:**
 ```javascript
-import { VATManager } from './module/vatManager.js'
+import { VatManagement } from './module/vatManagement.js'
 ```
 
 ## Usage
@@ -37,29 +37,29 @@ const vatRates = {
 }
 ```
 ## step 2: **Initialize the User Interface**
-Create an instance of the VATManager class, passing in the VAT rates:
+Create an instance of the VatManagement class, passing in the VAT rates:
 ```javascript
-const vatManager = new VATManager(vatRates)
+const VatManagement = new VatManagement(vatRates)
 ```
 ## step 3: **Add Items**
 You can add items to the VAT calculator using the `addItemToCalculator` method:
 ```javascript
-vatManager.addItemToCalculator('Product A', 100, 'standard', 2)
+VatManagement.addItemToCalculator('Product A', 100, 'standard', 2)
 ```
 ## step 4: **Calculate Total Price Including VAT**
 To get the total price of all items including VAT, use the `getTotalPrice` method:
 ```javascript 
-const totalPrice = vatManager.getTotalPrice()
+const totalPrice = VatManagement.getTotalPrice()
 ```
 ## step 5: **Update Item Details**
 You can update an item’s properties by specifying its name and the new values, using the `updateItemDetails` method:
 ```javascript
-const newItem = vatManager.updateItemDetails('Product A', (200, 'reduced', 10))
+const newItem = VatManagement.updateItemDetails('Product A', (200, 'reduced', 10))
 ```
 ## step 6: **Calculate VAT for All Items**
-To calculate and retrieve VAT details for all items, use `calculateVATForAllItems`:
+To calculate and retrieve VAT details for all items, use `calculateTotalVAT `:
 ```javascript
-const vatDetails = vatManager.calculateVATForAllItems()
+const vatDetails = VatManagement.calculateTotalVAT ()
 // Output : [{name: 'product A, Price: 200, VatRate: 0.12, quantity: 10, VAT: 240, total: 2 240 }]
 ```
 

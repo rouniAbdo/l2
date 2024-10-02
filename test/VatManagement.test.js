@@ -1,9 +1,9 @@
-import { VATManager } from '../src/module/vatManager'
+import { VatManagement } from '../src/module/VatManagement'
 describe('VATManager', () => {
   const vatRates = { standard: 0.25, reduced: 0.12 }
   let vatManager
   beforeEach(() => {
-    vatManager = new VATManager(vatRates)
+    vatManager = new VatManagement(vatRates)
   })
   test('should add an Item and return success message', () => {
     const result = vatManager.addItemToCalculator('item1', 100, 'standard', 1)
