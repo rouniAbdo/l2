@@ -10,7 +10,7 @@ This report summarizes the results of unit tests for the classes `Item`, `Update
 
 ## Test Cases and Results
 
-### 1. Item
+### 1. Item [test](./images/item.png)
 | Test Case                                         | Expected Result                                                   | Status   |
 |--------------------------------------------------|------------------------------------------------------------------|----------|
 | **1.1. Create Item with valid values**                    | Correctly creates `Item` with specified name, price, VAT rate, and quantity. | Pass     |
@@ -22,7 +22,7 @@ This report summarizes the results of unit tests for the classes `Item`, `Update
 | **1.7. Error for quantity less than 1**                   | Item quantity is not a valid number.                         | Pass     |
 | **1.8. Error for negative price**                          | Item price is not a valid number.                            | Pass     |
 
-### 2. UpdateItem
+### 2. UpdateItem [test](./images/updateItem.png)
 
 | Test Case                                         | Expected Result                                                   | Status   |
 |--------------------------------------------------|------------------------------------------------------------------|----------|
@@ -31,14 +31,14 @@ This report summarizes the results of unit tests for the classes `Item`, `Update
 | **2.3. Update the quantity of an item**                   | Successfully updates the item's quantity to 2.                  | Pass     |
 | **2.4. Update the name of an item**                       | Successfully updates the item's name to "item2".                | Pass     |
 
-### 3. VatCalculator
+### 3. VatCalculator [test](./images/vatCalculator.png)
 | Test Case                                         | Expected Result                                                   | Status   |
 |--------------------------------------------------|------------------------------------------------------------------|----------|
 | **3.1. Add an item to the list**                              | Successfully adds an item with expected properties.                | Pass     |
 | **3.2. Calculate VAT for an item**                            | Correctly calculates the VAT for the item as 25.                  | Pass     |
 | **3.3. Calculate total price including VAT for all items**    | Correctly calculates total price including VAT as 237.            | Pass     |
 
-### 4. VatManagement
+### 4. VatManagement [test](./images/vatManagement.png)
 
 | Test Case                                         | Expected Result                                                   | Status   |
 |--------------------------------------------------|------------------------------------------------------------------|----------|
